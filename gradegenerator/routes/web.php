@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,16 @@ use App\Http\Controllers\RegistrationController;
 |
 */
 
+// Route::get('/', [AuthController::class, 'index'])->name('home');
 Route::group(
     ['middleware' => 'prevent-back-history'],
     function () {
-        Route::get('/', [AuthController::class, 'index'])->name('home');
+        Route::get('/', function () {
+            return view('index');
+        })->name('home');
         Route::post('login', [AuthController::class, 'login'])->name('auth.login');
         Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+        Route::get('dashboard', [AuthController::class, 'dashboard']);
         Route::resource('user', RegistrationController::class);
     }
 );

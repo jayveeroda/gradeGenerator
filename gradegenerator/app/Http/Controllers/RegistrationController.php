@@ -14,19 +14,14 @@ class RegistrationController extends Controller
         return view('signup');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-   public function store(Request $request)
+
+    public function store(Request $request)
     {
-         $request->validate([
+        $request->validate([
             'lastName' => 'required',
             'firstName' => 'required',
             'middleName' => 'required',
-            'userName' => 'required|unique:users',
+            'email' => 'required|unique:users',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
         ]);
@@ -34,26 +29,21 @@ class RegistrationController extends Controller
         $data = $request->all();
         $this->storing($data);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Account Created!');
     }
 
-      public function storing(array $data)
+    public function storing(array $data)
     {
         return User::create([
             'lastName' => $data['lastName'],
             'firstName' => $data['firstName'],
             'middleName' => $data['middleName'],
-            'userName' => $data['userName'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //

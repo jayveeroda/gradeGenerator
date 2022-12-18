@@ -53,11 +53,10 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="text"
-                                    class="form-control @if ($errors->has('userName')) is-invalid @endif"
-                                    id="floatingText" placeholder="jhondoe" name="userName"
-                                    value="{{ old('userName', '') }}">
-                                <label for="floatingText">Username</label>
+                                <input type="email"
+                                    class="form-control @if ($errors->has('email')) is-invalid @endif"
+                                    id="floatingText" placeholder="jhondoe" name="email" value="{{ old('email', '') }}">
+                                <label for="floatingText">Email</label>
                             </div>
 
                             <div class="form-floating mb-4">

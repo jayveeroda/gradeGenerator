@@ -26,13 +26,15 @@
                          <form action="{{ route('auth.login') }}" method="POST">
                              @csrf
                              <div class="form-floating mb-3">
-                                 <input type="text" name="username" class="form-control" id="floatingInput"
-                                     placeholder="username">
+                                 <input type="email" name="email"
+                                     class="form-control @if ($errors->has('email')) is-invalid @endif"
+                                     id="floatingInput" placeholder="email">
                                  <label for="floatingInput">Email address</label>
                              </div>
                              <div class="form-floating mb-4">
-                                 <input type="password" name="password" class="form-control" id="floatingPassword"
-                                     placeholder="Password">
+                                 <input type="password" name="password"
+                                     class="form-control @if ($errors->has('password')) is-invalid @endif"
+                                     id="floatingPassword" placeholder="Password">
                                  <label for="floatingPassword">Password</label>
                              </div>
                              <div class="d-flex align-items-center justify-content-between mb-4">
